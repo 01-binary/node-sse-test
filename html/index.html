@@ -1,12 +1,21 @@
 <html>
 
+<head>
+    <script src="./eventsource.js"></script>
+</head>
+
 <body>
     <script>
 
         //데이터를 가져올 URL을 작성한다.
         function start() { // when "Start" button pressed
-
-            const eventSource = new EventSource("http://127.0.0.1:8080/test");
+            const temp = false;
+            const url = temp ? 'http://localhost:3001/java-proxy/lms/v1/kcb/credit-score-increase/sse-emitter' : 'http://localhost:8080/test'
+            const eventSource = new EventSourcePolyfill(url, {
+                headers: {
+                    'X-Auth-Token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdXRoVHhJZCI6ImUzNWUyNmNiLTAwMzctNDMwMy1iNjljLTM0NGIxNDZhNzM5MSIsImlkIjoyMDAwMDIxLCJleHAiOjE2ODAwNzIzOTgsInZlcnNpb24iOiJ2MjAyMTA1IiwiaWF0IjoxNjc5OTg1OTk4fQ.tY-fs9Xct7Gn161PHwFt2g4qnvqVyJ7g2jpkM5sVgRg',
+                },
+            });
 
             //브라우저가 SSE지원하는지 체크
             if (typeof (EventSource) !== "undefined") {

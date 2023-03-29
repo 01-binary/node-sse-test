@@ -12,6 +12,7 @@ const requestListener = function (req, res) {
 
     res.statusCode = 200;
     res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "*");
     res.setHeader("Cache-Control", "no-cache");
     res.setHeader("connection", "keep-alive");
     res.setHeader("Content-Type", "text/event-stream");
